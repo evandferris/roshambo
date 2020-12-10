@@ -1,0 +1,40 @@
+<html>
+<body>
+    <head>
+
+    </head>
+</body>
+</html>
+
+<script>
+
+function computerPlay(){       
+
+choice = ["Rock", "Paper", "Scissors"]
+let play = choice[Math.floor(Math.random() * choice.length)];
+
+console.log(play); 
+}
+
+function playRound(playerSelection, computerSelection){
+
+    playerSelection = prompt("Please choose 'Rock', 'Paper', or 'Scissors'", "").toLowerCase();
+    computerSelection = computerPlay();
+    //ADD COMPARISONS FOR ROCK&&ROCK AND REST OF GAME
+    if (playerSelection === 'rock' && computerSelection !== 'paper' || 'rock' ) {
+        return "You win! Rock beats scissors"
+    } 
+    else if (playerSelection === 'paper'){
+        return "You chose: Paper!"
+    }
+    else if (playerSelection === 'scissors'){
+        return "You chose: Scissors!"
+    } 
+    else {
+        return "Wrong choice, try again"
+    }
+    
+
+    }
+
+</script>
