@@ -19,10 +19,10 @@ console.log(play);
 function playRound(playerSelection, computerSelection){
 
     playerSelection = prompt("Please choose 'Rock', 'Paper', or 'Scissors'", "").toLowerCase();
-    computerSelection = computerPlay();
+    
     //ADD COMPARISONS FOR ROCK&&ROCK AND REST OF GAME
-    if (playerSelection === 'rock' && computerSelection !== 'paper' || 'rock' ) {
-        return "You win! Rock beats scissors"
+    if (playerSelection === 'rock') {
+        return "You chose: Rock!"
     } 
     else if (playerSelection === 'paper'){
         return "You chose: Paper!"
@@ -36,5 +36,9 @@ function playRound(playerSelection, computerSelection){
     
 
     }
+
+
+const computerSelection = computerPlay();
+console.log(playRound(playerSelection, computerSelection));
 
 </script>
