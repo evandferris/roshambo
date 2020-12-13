@@ -13,29 +13,88 @@ function computerPlay(){
 choice = ["Rock", "Paper", "Scissors"]
 let play = choice[Math.floor(Math.random() * choice.length)];
 
-console.log(play); 
+
+
+console.log('Computer chose ' + play + '!');
 }
 
-function playRound(playerSelection, computerSelection){
+let playerName = ''
 
+function playRound(playerSelection, computerSelection){
+ 
+ 
+//Player chooses name
+    let playerName = prompt("Please enter your name").toLowerCase();
+
+    if (playerName === 'jill'){
+        alert ('Hi baby, I love you! -Evan');
+        //Yeah yeah I know I'm whipped.
+    } 
+    else {     
+        alert('Welcome, ' + playerName + ', please enjoy the game!');
+    }
+    
+  
+//Player chooses input
     playerSelection = prompt("Please choose 'Rock', 'Paper', or 'Scissors'", "").toLowerCase();
     
-    //ADD COMPARISONS FOR ROCK&&ROCK AND REST OF GAME
+    
+//ADD COMPARISONS FOR ROCK&&ROCK AND REST OF GAME
     if (playerSelection === 'rock') {
-        return "You chose: Rock!"
+        alert ("You chose: Rock!");
     } 
     else if (playerSelection === 'paper'){
-        return "You chose: Paper!"
+        alert( "You chose: Paper!");
     }
     else if (playerSelection === 'scissors'){
-        return "You chose: Scissors!"
+        alert ("You chose: Scissors!");
     } 
     else {
-        return "Wrong choice, try again"
+        alert ("That is not a choice, try again")
+        playRound();
     }
-    
+//Endgame alerts
+    let cpuWinRd = 'The Computer wins this round!';
+    let playerWinRd = playerName + ',' + ' you win this round!';
+    let tieRd = 'It\'s a tie! Pick again!';
+//Win-loss conditions
+    //CONDITIONS FOR ROCK & PAPER
+    if (playerSelection === 'rock' && computerSelection === 'paper'){
 
+        alert(cpuWinRd);
+    } 
+    else if (playerSelection === 'paper' && computerSelection === 'rock'){
+       
+        alert(playerWinRd);
+    } else if (playerSelection === 'rock')
+    //CONDITIONS FOR ROCK & SCISSORS
+
+    if (playerSelection === 'scissors' && computerSelection === 'rock'){
+        
+        alert(cpuWinRd);
     }
+    else if (playerSelection === 'rock' && computerSelection === 'scissors'){
+        
+        alert(playerWinRd);
+    }
+    //CONDITIONS FOR PAPER & SCISSORS
+    if (playerSelection === 'paper' && computerSelection === 'scissors'){
+        
+        alert(cpuWinRd);
+    } 
+    else if (playerSelection === 'scissors' && computerSelection === 'paper'){
+
+        alert(playerWinRd);
+    }
+    //CONDITIONS FOR TIE
+    else if (playerSelection === 'rock' && computerSelection === 'rock'
+        ||   playerSelection === 'scissors' && computerSelection === 'scissors'
+        ||   playerSelection === 'paper' && computerSelection === 'paper'){
+        
+        alert(tieRd)
+    }
+      
+}
 
 
 const computerSelection = computerPlay();
