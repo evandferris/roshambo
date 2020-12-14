@@ -11,21 +11,16 @@
 function computerPlay(){       
 
 choice = ["Rock", "Paper", "Scissors"]
-let play = choice[Math.floor(Math.random() * choice.length)];
-
-
-
-console.log('Computer chose ' + play + '!');
+    let play = choice[Math.floor(Math.random() * choice.length)];
+    console.log('Computer chose ' + play + '!');
+    
+    return play;
 }
 
-let playerName = '';
 let playerSelection = '';
 
-function playRound(playerSelection, computerSelection){
- 
- 
-//Player chooses name
-    let playerName = prompt("Please enter your name").toLowerCase();
+//player chooses name
+let playerName = prompt("Please enter your name").toLowerCase();
 
     if (playerName === 'jill'){
         alert ('Hi baby, I love you! -Evan');
@@ -34,8 +29,8 @@ function playRound(playerSelection, computerSelection){
     else {     
         alert('Welcome, ' + playerName + ', please enjoy the game!');
     }
-    
-  
+
+    function playRound(playerSelection, computerSelection){
 //Player chooses input
     playerSelection = prompt("Please choose 'Rock', 'Paper', or 'Scissors'", "").toLowerCase();
     
@@ -54,10 +49,8 @@ function playRound(playerSelection, computerSelection){
         alert ("That is not a choice, try again")
         playRound();
     }
-//Endgame alerts
-    let cpuWinRd = 'The Computer wins this round!';
-    let playerWinRd = playerName + ',' + ' you win this round!';
-    let tieRd = 'It\'s a tie! Pick again!';
+
+
 //Win-loss conditions
     //CONDITIONS FOR ROCK & PAPER
     if (playerSelection === 'rock' && computerSelection === 'paper'){
@@ -92,13 +85,48 @@ function playRound(playerSelection, computerSelection){
         ||   playerSelection === 'scissors' && computerSelection === 'scissors'
         ||   playerSelection === 'paper' && computerSelection === 'paper'){
         
-        alert(tieRd)
+        
+        alert(tieAlert)
     }
       
 }
 
 
-const computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection));
+//Endgame alerts
+let cpuWinRd = 'The Computer wins this round!';
+let playerWinRd = playerName + ',' + ' you win this round!';
+let tieAlert = 'It\'s a tie! Pick again!';
+let tieRd = ''
+let playerWinGm = 'Congratulations ' + playerName + '! You won the game!';
+let cpuWinGm = 'Sorry ' + playerName + ', you lost - play again?';
 
+
+//Loop
+let numGames = 5;
+let winners = ["1", "1", "1", "2", "2"]
+for (let i = 0; i < numGames; i++){
+    const computerSelection = computerPlay().toLowerCase();
+    console.log(playRound(playerSelection, computerSelection));
+}
+
+roundsPlayerWins = 0;
+roundsComputerWins = 0;
+for (var i = 0; i < winners.length; i++){
+    //Who wins more? Player or cpu...
+    if (winners[i] == '1'){
+        roundsPlayerWins++
+    } 
+    else if (winners[i] == '2'){
+        roundsComputerWins++;
+    } 
+}
+
+if (roundsPlayerWins >= 3){
+
+    alert(playerWinGm);
+}
+else if (roundsComputerWins >= 3){
+    
+    alert(cpuWinGm);
+}
 </script>
