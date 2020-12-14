@@ -19,7 +19,6 @@ choice = ["Rock", "Paper", "Scissors"]
 
 let playerSelection = '';
 
-//player chooses name
 let playerName = prompt("Please enter your name").toLowerCase();
 
     if (playerName === 'jill'){
@@ -31,11 +30,9 @@ let playerName = prompt("Please enter your name").toLowerCase();
     }
 
     function playRound(playerSelection, computerSelection){
-//Player chooses input
     playerSelection = prompt("Please choose 'Rock', 'Paper', or 'Scissors'", "").toLowerCase();
     
     
-//ADD COMPARISONS FOR ROCK&&ROCK AND REST OF GAME
     if (playerSelection === 'rock') {
         alert ("You chose: Rock!");
     } 
@@ -51,8 +48,7 @@ let playerName = prompt("Please enter your name").toLowerCase();
     }
 
 
-//Win-loss conditions
-    //CONDITIONS FOR ROCK & PAPER
+
     if (playerSelection === 'rock' && computerSelection === 'paper'){
 
         alert(cpuWinRd);
@@ -61,7 +57,6 @@ let playerName = prompt("Please enter your name").toLowerCase();
        
         alert(playerWinRd);
     } else if (playerSelection === 'rock')
-    //CONDITIONS FOR ROCK & SCISSORS
 
     if (playerSelection === 'scissors' && computerSelection === 'rock'){
         
@@ -71,7 +66,6 @@ let playerName = prompt("Please enter your name").toLowerCase();
         
         alert(playerWinRd);
     }
-    //CONDITIONS FOR PAPER & SCISSORS
     if (playerSelection === 'paper' && computerSelection === 'scissors'){
         
         alert(cpuWinRd);
@@ -80,7 +74,6 @@ let playerName = prompt("Please enter your name").toLowerCase();
 
         alert(playerWinRd);
     }
-    //CONDITIONS FOR TIE
     else if (playerSelection === 'rock' && computerSelection === 'rock'
         ||   playerSelection === 'scissors' && computerSelection === 'scissors'
         ||   playerSelection === 'paper' && computerSelection === 'paper'){
@@ -92,7 +85,7 @@ let playerName = prompt("Please enter your name").toLowerCase();
 }
 
 
-//Endgame alerts
+
 let cpuWinRd = 'The Computer wins this round!';
 let playerWinRd = playerName + ',' + ' you win this round!';
 let tieAlert = 'It\'s a tie! Pick again!';
@@ -101,7 +94,7 @@ let playerWinGm = 'Congratulations ' + playerName + '! You won the game!';
 let cpuWinGm = 'Sorry ' + playerName + ', you lost - play again?';
 
 
-//Loop
+
 let numGames = 5;
 let winners = ["1", "1", "1", "2", "2"]
 for (let i = 0; i < numGames; i++){
