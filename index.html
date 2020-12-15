@@ -8,118 +8,124 @@
 
 <script>
 
-function computerPlay(){       
 
-choice = ["Rock", "Paper", "Scissors"]
-    let play = choice[Math.floor(Math.random() * choice.length)];
-    console.log('Computer chose ' + play + '!');
-    
-    return play;
+
+//global vars
+let choices = ['Rock', "Paper", "Scissors"]
+let gamesToWin = 3;
+let playerWins = 0;
+let cpuWins = 0; 
+//game messages
+let cpuWinRd = 'The Computer wins this round!';
+let playerName = getPlayerName();
+let playerWinRd = playerName + ',' + ' you win this round!';
+let tieAlert = 'It\'s a tie! Pick again!';
+let playerWinGm = 'Congratulations ' + playerName + '! You won the game!';
+let cpuWinGm = 'Sorry ' + playerName + ', you lost - play again?';
+let endGm = 'Thanks for playing, have a good day!';
+let endGmJill = 'Thanks for playing baby, and thank you for your endless support and love <3';
+let cpuWinGmJill = 'You may have lost against the computer but you won my heart'
+
+
+startGame();
+
+function startGame(){
+
+    while (playerWins != gamesToWin && cpuWins != gamesToWin) {
+        let playerSelection = userPlay();
+        let computerSelection = computerPlay();
+
+        playRound(playerSelection, computerSelection);
+    }
+
+    if (playerWins === gamesToWin && playerName == 'jill'){
+        alert(endGmJill);
+    } else if (playerWins === gamesToWin){
+        alert(playerWinGm);
+    }
+    else if(cpuWins === gamesToWin && playerName == 'jill'){
+        alert(cpuWinGmJill);
+    }
+    else if(cpuWins === gamesToWin){
+        alert(cpuWinGm);
+ 
+    }        
+    if (playAgain()) {
+        resetGame();
+        startGame();
+    } 
+    else {
+        alert(endGm);
+    } 
+
 }
 
-let playerSelection = '';
 
-let playerName = prompt("Please enter your name").toLowerCase();
-
+function getPlayerName() {
+    let playerName = prompt("Please enter your name").toLowerCase();
     if (playerName === 'jill'){
         alert ('Hi baby, I love you! -Evan');
         //Yeah yeah I know I'm whipped.
     } 
     else {     
-        alert('Welcome, ' + playerName + ', please enjoy the game!');
+    alert('Welcome, ' + playerName + ', please enjoy the game!');
     }
 
-    function playRound(playerSelection, computerSelection){
-    playerSelection = prompt("Please choose 'Rock', 'Paper', or 'Scissors'", "").toLowerCase();
+    return playerName;
+}
+
+function computerPlay(){       
+
+    let play = choices[Math.floor(Math.random() * choices.length)].toLowerCase();
+    return play;
+}
+
+
+function userPlay(){
+    play = prompt("Please choose 'Rock', 'Paper', or 'Scissors'", "").toLowerCase();
+    if (play == 'rock' || 'paper' || 'scissors'){
+        alert('Invalid choice, try again')
+        userPlay();
+    }
+    else{
+        return play;
+    }
+ 
+}
+
+function playRound(playerSelection, computerSelection){
+    if (playerSelection === computerSelection){
+        alert(tieAlert);
+        return;
+    }
+
+    alert("You selected: " + playerSelection + " // Computer selected: " + computerSelection);
     
-    
-    if (playerSelection === 'rock') {
-        alert ("You chose: Rock!");
-    } 
-    else if (playerSelection === 'paper'){
-        alert( "You chose: Paper!");
-    }
-    else if (playerSelection === 'scissors'){
-        alert ("You chose: Scissors!");
-    } 
-    else {
-        alert ("That is not a choice, try again")
-        playRound();
-    }
-
-
-
-    if (playerSelection === 'rock' && computerSelection === 'paper'){
-
-        alert(cpuWinRd);
-    } 
-    else if (playerSelection === 'paper' && computerSelection === 'rock'){
-       
-        alert(playerWinRd);
-    } else if (playerSelection === 'rock')
-
-    if (playerSelection === 'scissors' && computerSelection === 'rock'){
-        
-        alert(cpuWinRd);
-    }
-    else if (playerSelection === 'rock' && computerSelection === 'scissors'){
-        
-        alert(playerWinRd);
-    }
-    if (playerSelection === 'paper' && computerSelection === 'scissors'){
-        
-        alert(cpuWinRd);
-    } 
-    else if (playerSelection === 'scissors' && computerSelection === 'paper'){
-
-        alert(playerWinRd);
-    }
-    else if (playerSelection === 'rock' && computerSelection === 'rock'
-        ||   playerSelection === 'scissors' && computerSelection === 'scissors'
-        ||   playerSelection === 'paper' && computerSelection === 'paper'){
-        
-        
-        alert(tieAlert)
-    }
-      
+    if    (playerSelection == 'rock' && computerSelection == 'paper' 
+        || playerSelection == 'paper' && computerSelection == 'scissors'
+        || playerSelection == 'scissors' && computerSelection == 'rock') {
+            
+            cpuWins++;
+            alert(cpuWinRd);
+        } 
+        else {
+            playerWins++;
+            alert(playerWinRd);
+        }
 }
 
 
-
-let cpuWinRd = 'The Computer wins this round!';
-let playerWinRd = playerName + ',' + ' you win this round!';
-let tieAlert = 'It\'s a tie! Pick again!';
-let tieRd = ''
-let playerWinGm = 'Congratulations ' + playerName + '! You won the game!';
-let cpuWinGm = 'Sorry ' + playerName + ', you lost - play again?';
-
-
-
-let numGames = 5;
-let winners = ["1", "1", "1", "2", "2"]
-for (let i = 0; i < numGames; i++){
-    const computerSelection = computerPlay().toLowerCase();
-    console.log(playRound(playerSelection, computerSelection));
+function playAgain(){
+    let play = prompt('Would you like to play again? | (Y/N)', '').toLowerCase();
+    if (play == 'y'){
+        return true;
+    } else {
+        return false;
+    }
 }
 
-roundsPlayerWins = 0;
-roundsComputerWins = 0;
-for (var i = 0; i < winners.length; i++){
-    //Who wins more? Player or cpu...
-    if (winners[i] == '1'){
-        roundsPlayerWins++
-    } 
-    else if (winners[i] == '2'){
-        roundsComputerWins++;
-    } 
-}
-
-if (roundsPlayerWins >= 3){
-
-    alert(playerWinGm);
-}
-else if (roundsComputerWins >= 3){
-    
-    alert(cpuWinGm);
+function resetGame(){
+    playerWins = 0;
+    cpuWins = 0;
 }
 </script>
